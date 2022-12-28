@@ -5,18 +5,8 @@ const getPosts = async (param) => {
         fetch(
             `http://gateway.marvel.com/v1/public/characters?${param}&ts=${timeStamp}
             &apikey=7bd17ba682f6887e07c185e1bb2705ee=${hash}`)
-            return response.json();
-        
-    }
-
-    const herosfromfedd = heros.data.results.map(item =>`<li class="card ${'normal'}>
-    <li class="card ${normal`}">
-    <img class="card-image" alt=${item.name}
-    src= "${item.thumbnail.path}${'.'}{item.thubnail.extension}"/>
-    <h2 class="card-title">${item.name}</h2>
-    </li    >
-    `).join('')
-
+    return response.json();
+}
 
 //Exibe os Herois iniciais:
 const earlyFeed = async () => {
@@ -33,12 +23,21 @@ const searchPersonIntoDOM = async (search) => {
     ul.innerHTML = postsTemplate;
 }
 
+
+const herosfromfedd = heros.data.results.map(item =>`<li class="card ${'normal'}>
+<li class="card ${normal}">
+<img class="card-image" alt=${item.name}
+src= "${item.thumbnail.path}${'.'}{item.thubnail.extension}"/>
+<h2 class="card-title">${item.name}</h2>
+</li    >
+`).join('')
+
 //Funcao que verifica o imput "pesquisar personagens"
 const modifyimputValue = event => {
     const inputValue = event.target.value.toLowerCase();
     if (inputValue != '') {
         searchPersonIntoDOM(inputValue);
-    } else if (inputValue = '' || inputValue = null) {
+    } else if (inputValue == '' || inputValue == null) {
         earlyFeed();
         }
     }
